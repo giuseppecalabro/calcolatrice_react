@@ -20,25 +20,31 @@ const Tastiera= (props:Props): JSX.Element => {
 
     function gestisciClick(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
+        props.setRisultato("")
+        setStringaOperazione("")
 
         if(event.currentTarget.innerHTML === "AC"){
             props.setRisultato("")
             setStringaOperazione("")
         }else if(event.currentTarget.innerHTML === "="){
             try{
-                const result = Calcolatore.calcola(stringaOperazione)
+                const result:string = String(Calcolatore.calcola(stringaOperazione))
                 props.setRisultato((result!))
                 setStringaOperazione((String(result!)))
             }catch(error){
                 if(error instanceof Error){
                     const errore = (error as Error).message
                     props.setRisultato("")
-                    // setStringaOperazione("")
+                    setStringaOperazione("")
                     toast.error(errore, {
                         position: toast.POSITION.TOP_CENTER
                     });
                 }
             }
+        }else if(event.currentTarget.innerHTML === "C"){
+            const nuovaStringa = stringaOperazione.substring(0, stringaOperazione.length-1)
+            props.setRisultato(nuovaStringa)
+            setStringaOperazione(nuovaStringa)
         }
         else{
             props.setRisultato("")
@@ -54,8 +60,8 @@ const Tastiera= (props:Props): JSX.Element => {
             <div className="w-[25rem] bg-slate-800 container mx-auto rounded-ee-2xl rounded-es-2xl shadow-white border-4 border-x-zinc-500 border-b-4 border-b-zinc-500">
                 <div className="grid gap-3 grid-cols-4 grid-rows-5 p-6">
                     <button className="bg-gray-500 rounded-full text-white font-bold text-xl h-20" onClick={gestisciClick}>AC</button>
-                    <button className="bg-gray-500 rounded-full text-white font-bold text-xl h-20" onClick={gestisciClick}>+/-</button>
-                    <button className="bg-gray-500 rounded-full text-white font-bold text-xl h-20" onClick={gestisciClick}>%</button>
+                    <button className="bg-gray-500 rounded-full text-white font-bold text-xl h-20" onClick={gestisciClick}>C</button>
+                    <button className="bg-gray-500 rounded-full text-white font-bold text-xl h-20" title="numero*percentuale/100" onClick={gestisciClick}>%</button>
                     <button className="bg-orange-500 rounded-full text-white font-bold text-xl h-20" onClick={gestisciClick}>/</button>
                     <button className="bg-gray-500 rounded-full text-white font-bold text-xl h-20" onClick={gestisciClick}>7</button>
                     <button className="bg-gray-500 rounded-full text-white font-bold text-xl h-20" onClick={gestisciClick}>8</button>
