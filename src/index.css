@@ -12,6 +12,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
+.hoverButtonGray{
+  transition: 0.5s;
+}
+.hoverButtonGray:hover{
+  @apply bg-gray-300;
+  text-shadow: 0 0 5px #222;
+}
+.hoverButtonOrange{
+  transition: 0.5s
+}
+.hoverButtonOrange:hover{
+  @apply bg-orange-300;
+  text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF;
+}
+
 
 @tailwind base;
 @tailwind components;

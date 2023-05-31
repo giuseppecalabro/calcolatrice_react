@@ -1,43 +1,40 @@
-import React, { useState, useEffect, FormEvent } from "react";
+import React, {MouseEventHandler } from "react";
 interface Props {
     key: number;
-    valore: string;
-    colspan?:boolean;
-    operator?:boolean;
+    gestisciOperatore:MouseEventHandler<HTMLButtonElement>
 }
 
-const Pulsante= (props: Props): JSX.Element => {
-    // const [stringa, setStringa] = useState<string[]>([]);
+const Pulsanti= (props: Props): JSX.Element => {
 
-    const array:string[] = []
-
-    // useEffect(() => {
-    //     setStringa(stringa + props.valore);
-    //   }, [props.valore]);
-
-
-
-    function gestisciClick(event: React.MouseEvent<HTMLButtonElement>) {
-        event.preventDefault();
-        alert("ok")
-        alert(props.valore)
-        
-        // setStringa((prevArray) => [...prevArray, props.valore])
-
-        // console.log(stringa)
-        
-        array.push(props.valore)
-        console.log(array)
-    }
     return (
         <>    
-            <button className={`${props.operator? "bg-orange-400" : "bg-gray-500"} rounded-full text-white font-bold text-xl h-20 ${props.colspan ? "col-span-2" : ""} `} onClick={gestisciClick}>{props.valore}</button>
+            <div className="grid gap-3 grid-cols-4 grid-rows-5 p-6">
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>AC</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>C</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" title="numero*percentuale/100" onClick={props.gestisciOperatore}>%</button>
+                    <button className="bg-orange-500 hoverButtonOrange rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>/</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>7</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>8</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>9</button>
+                    <button className="bg-orange-500 hoverButtonOrange rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>x</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>4</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>5</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>6</button>
+                    <button className="bg-orange-500 hoverButtonOrange rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>-</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>1</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>2</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>3</button>
+                    <button className="bg-orange-500 hoverButtonOrange rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>+</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full col-span-2 text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>0</button>
+                    <button className="bg-gray-500 hoverButtonGray rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>,</button>
+                    <button className="bg-orange-500 hoverButtonOrange rounded-full text-white font-bold text-xl h-20" onClick={props.gestisciOperatore}>=</button>
+                </div>
         </>
 
     )
 }
 
-export default Pulsante
+export default Pulsanti
 
 
 
